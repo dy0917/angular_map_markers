@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/home/adminuser/NetBeansProject/angular_map_markers/app/index.html</file>
+            <file>file:/home/adminuser/NetBeansProject/angular_map_markers/app/scripts/services/todosService.js</file>
+            <file>file:/home/adminuser/NetBeansProject/angular_map_markers/app/scripts/services/mapService.js</file>
+            <file>file:/home/adminuser/NetBeansProject/angular_map_markers/app/scripts/controllers/EditTodoCtrl.js</file>
+            <file>file:/home/adminuser/NetBeansProject/angular_map_markers/app/scripts/controllers/about.js</file>
+            <file>file:/home/adminuser/NetBeansProject/angular_map_markers/app/scripts/controllers/loginCtrl.js</file>
+            <file>file:/home/adminuser/NetBeansProject/angular_map_markers/app/scripts/services/mapControlsService.js</file>
+            <file>file:/home/adminuser/NetBeansProject/angular_map_markers/app/scripts/directives/mainDrc.js</file>
+            <file>file:/home/adminuser/NetBeansProject/angular_map_markers/app/views/main.html</file>
+            <file>file:/home/adminuser/NetBeansProject/angular_map_markers/app/scripts/services/infoWindowService.js</file>
+            <file>file:/home/adminuser/NetBeansProject/angular_map_markers/app/scripts/controllers/main.js</file>
+        </group>
+    </open-files>
+</project-private>
