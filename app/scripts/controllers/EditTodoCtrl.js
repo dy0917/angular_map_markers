@@ -12,7 +12,6 @@ mapApp.controller('EditTodoCtrl', function($scope, mapService, todosService, inf
             editMarker;
 
     $scope.editTodo = {};
-
     // editMarker Setup Start
 
     editPinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + "55FF00",
@@ -29,7 +28,7 @@ mapApp.controller('EditTodoCtrl', function($scope, mapService, todosService, inf
     });
 
     function editMarkerDragCallback(scope, myMarker) {
-        console.log("dddddddddddddddddddddddd");
+
         return function() {
             var pos = myMarker.getPosition();
             scope.editTodo.lat = pos.lat();
@@ -41,7 +40,7 @@ mapApp.controller('EditTodoCtrl', function($scope, mapService, todosService, inf
     google.maps.event.addListener(editMarker, 'drag', editMarkerDragCallback($scope, editMarker));
 
     function editMarkerDblClickCallback(scope) {
-  
+
         return function() {
             scope.$apply(function() {
                 scope.submitTodo();
@@ -49,6 +48,14 @@ mapApp.controller('EditTodoCtrl', function($scope, mapService, todosService, inf
         };
     }
     google.maps.event.addListener(editMarker, 'dblclick', editMarkerDblClickCallback($scope));
+
+    $scope.$watch(function() {
+        return todosService.searchString;
+    }, function(newValue) {
+        todosService.filter={title: newValue};
+
+
+    }, true);
 
     $scope.$watch('editTodo.lat + editTodo.lng', function(newValue, oldValue) {
         if (newValue !== oldValue) {
@@ -64,7 +71,6 @@ mapApp.controller('EditTodoCtrl', function($scope, mapService, todosService, inf
 
     $scope.$watch('controls.editTodo + controls.editTodoId', function() {
         var pos, todo = mapControlsService.editTodoId !== NEW_TODO_ID && todosService.getTodoById(mapControlsService.editTodoId);
-        console.log(todo);
         infoWindowService.close();
         if (mapControlsService.editTodo) {
             if (todo) {
@@ -75,7 +81,7 @@ mapApp.controller('EditTodoCtrl', function($scope, mapService, todosService, inf
                     lat: todo.lat,
                     lng: todo.lng,
                     comp: todo.completed,
-                    saveMsg: "Update Todo111111",
+                    saveMsg: "Update Location",
                     cancelMsg: "Discard Changes"
                 };
             } else {
@@ -84,8 +90,8 @@ mapApp.controller('EditTodoCtrl', function($scope, mapService, todosService, inf
                     id: NEW_TODO_ID,
                     lat: pos.lat,
                     lng: pos.lng,
-                    saveMsg: "Save Todo",
-                    cancelMsg: "Discard Todo"
+                    saveMsg: "Save Location",
+                    cancelMsg: "Discard Location"
                 };
             }
             editMarker.setMap(mapService.getMap());
@@ -93,6 +99,7 @@ mapApp.controller('EditTodoCtrl', function($scope, mapService, todosService, inf
     });
 
     $scope.submitTodo = function() {
+      
         if ($scope.editTodoForm.$valid) {
             if ($scope.editTodo.id === NEW_TODO_ID)
                 addTodo();
@@ -106,7 +113,8 @@ mapApp.controller('EditTodoCtrl', function($scope, mapService, todosService, inf
         mapControlsService.editTodo = false;
         mapControlsService.editTodoId = NEW_TODO_ID;
         $scope.editTodo = {};
-    }
+    };
+
 
     function addTodo() {
         todosService.addTodo(
@@ -119,7 +127,7 @@ mapApp.controller('EditTodoCtrl', function($scope, mapService, todosService, inf
 
     function editTodo() {
         todosService.updateTodo(
-                $scope.editTodo.id, 
+                $scope.editTodo.id,
                 $scope.editTodo.title,
                 $scope.editTodo.desc,
                 $scope.editTodo.lat,

@@ -50,7 +50,7 @@
         <script src="bower_components/json3/lib/json3.min.js"></script>
         <![endif]-->
 
-        <!-- build:js scripts/vendor.js -->
+        <!-- build:js(app/..) scripts/vendor.js -->
         <!-- bower:js -->
         <script src="bower_components/jquery/dist/jquery.js"></script>
         <script src="bower_components/angular/angular.js"></script>
@@ -78,20 +78,18 @@
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+        <script src="scripts/lib/markerwithlabel.js"></script>
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/about.js"></script>
         <script src="scripts/services/mapService.js"></script>
-
-
-
-
         <script src="scripts/services/todosService.js"></script>
         <script src="scripts/services/markersService.js"></script>
         <script src="scripts/services/infoWindowService.js"></script>
         <script src="scripts/services/mapControlsService.js"></script>
         <script src="scripts/controllers/EditTodoCtrl.js"></script>
         <script src="scripts/directives/mainDrc.js"></script>
+        <script src="scripts/controllers/loginCtrl.js"></script>
         <!-- endbuild -->
     </body>
 </html>

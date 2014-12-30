@@ -6,20 +6,27 @@
  * # AboutCtrl
  * Controller of the angularMapApp
  */
-   mapApp.service('mapService', function () {
-      var map;
-      this.setMap = function (myMap) {
+mapApp.service('mapService', function() {
+    var map;
+    this.setMap = function(myMap) {
         map = myMap;
-      };
-      this.getMap = function () {
-        if (map) return map;
+    };
+    this.getMap = function() {
+        if (map)
+            return map;
         throw new Error("Map not defined");
-      };
-      this.getLatLng = function () {
+    };
+    this.getLatLng = function() {
         var center = map.getCenter();
         return {
-          lat: center.lat(),
-          lng: center.lng()
+            lat: center.lat(),
+            lng: center.lng()
         };
-      };
-    });
+    };
+    this.setLatLng = function() {
+       map.setCenter( {
+            lat: -37,
+            lng: 178
+        });
+    };
+});

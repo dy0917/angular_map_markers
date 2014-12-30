@@ -32,7 +32,7 @@ mapApp
                                 {completed: true} : null;
                     });
 
-                    $scope.$watch('location.path() + todos.nextId + todos.remainingCount()', function() {
+                    $scope.$watch('todos.filter', function() {
                         var i,
                                 todos = todosService.filtered(),
                                 map = mapService.getMap(),
@@ -42,6 +42,7 @@ mapApp
                                 markerId,
                                 uniqueTodos = {};
 
+
                         function addMarkerByTodoIndex(todoIndex) {
                             var marker,
                                     markerOptions,
@@ -50,9 +51,19 @@ mapApp
                             markerOptions = {
                                 map: map,
                                 title: todo.title,
-                                position: new google.maps.LatLng(todo.lat, todo.lng)
+                                position: new google.maps.LatLng(todo.lat, todo.lng),
+//                                labelContent: todo.title,
+                       
+                                phone: todo.phone,
+                                addr: todo.addr,
+                                  icon: {
+                    url: "images/small_marker.png",
+    
+                },
+                                labelClass:"markerBackground"
                             };
-                            marker = new google.maps.Marker(markerOptions);
+                            marker = new MarkerWithLabel(markerOptions);
+
                             marker.setValues({
                                 id: todo.id,
                                 desc: todo.desc
@@ -62,6 +73,8 @@ mapApp
                             function markerClickCallback(scope, todoId) {
                                 return function() {
                                     scope.$apply(function() {
+                                        //           marker.
+                        
                                         mapControlsService.openInfoWindowByTodoId(todoId);
                                     });
                                 };
@@ -71,6 +84,7 @@ mapApp
                             function markerDblClickCallback(scope, todoId) {
                                 return function() {
                                     scope.$apply(function() {
+                       
                                         mapControlsService.editTodoById(todoId);
                                     });
                                 };
@@ -79,14 +93,16 @@ mapApp
                         }
 
                         for (i = todos.length - 1; i >= 0; i--) {
+
                             uniqueTodos[todos[i].id] = i;
                         }
+
 
                         for (i = markers.length - 1; i >= 0; i--) {
                             marker = markers[i];
                             markerId = marker.get("id");
                             if (uniqueTodos[markerId] !== undefined) {
-                                delete uniqueTodos[markerId];
+                                //   delete uniqueTodos[markerId];
                             } else {
                                 marker.setMap(null);
                                 markers.splice(i, 1);
@@ -94,7 +110,9 @@ mapApp
                         }
 
                         for (todoId in uniqueTodos) {
+
                             if (uniqueTodos.hasOwnProperty(todoId)) {
+
                                 addMarkerByTodoIndex(uniqueTodos[todoId]);
                             }
                         }
@@ -104,6 +122,11 @@ mapApp
                     var mapOptions,
                             latitude = attrs.latitude,
                             longitude = attrs.longitude,
+                            testWindowTemplate,
+                            testWindowElem,
+                      
+                        loginFormTemplate,
+                            loginFormElem,
                             infoWindowTemplate,
                             infoWindowElem,
                             infowindow,
@@ -114,9 +137,10 @@ mapApp
                             mapStyles,
                             map;
 
-                    latitude = latitude && parseFloat(latitude, 10) || 43.074688;
-                    longitude = longitude && parseFloat(longitude, 10) || -89.384294;
+                    latitude = latitude && parseFloat(latitude, 10) || -36.8404;
+                    longitude = longitude && parseFloat(longitude, 10) || 174.7399;
 
+                    
                     infoWindowTemplate = document.getElementById('infoWindowTemplate').innerHTML.trim();
                     infoWindowElem = $compile(infoWindowTemplate)(scope);
                     infowindow = new google.maps.InfoWindow({
@@ -128,7 +152,7 @@ mapApp
                     mapStyles = [{
                             featureType: 'all',
                             stylers: [
-                                {hue: '#0000b0'},
+                            //    {hue: '#0000b0'},
                                 {invert_lightness: 'true'},
                                 {saturation: -30}
                             ]
@@ -151,6 +175,16 @@ mapApp
                     todosControlTemplate = document.getElementById('todosControlTemplate').innerHTML.trim();
                     todosControlElem = $compile(todosControlTemplate)(scope);
                     map.controls[google.maps.ControlPosition.TOP_LEFT].push(todosControlElem[0]);
+
+                    testWindowTemplate = document.getElementById('testWindowTemplate').innerHTML.trim();
+                    testWindowElem = $compile(testWindowTemplate)(scope);
+                    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(testWindowElem[0]);
+                    
+                    loginFormTemplate = document.getElementById('loginFormTemplate').innerHTML.trim();
+                    console.log(loginFormTemplate);
+                    loginFormElem = $compile(loginFormTemplate)(scope);
+                    map.controls[google.maps.ControlPosition.TOP_CENTER].push(loginFormElem[0]);
+                    
 
                     editTodoControlTemplate = document.getElementById('editTodoControlTemplate').innerHTML.trim();
                     editTodoControlElem = $compile(editTodoControlTemplate)(scope);
