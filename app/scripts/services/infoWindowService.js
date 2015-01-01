@@ -22,8 +22,10 @@ mapApp.service('infoWindowService', function(mapService) {
 
     };
     this.open = function(marker) {
+ 
         infowindow.open(mapService.getMap(), marker);
-      //  mapService.getMap().setCenter(new google.maps.LatLng(marker.position.k, marker.position.B));
+        console.log(marker.getPosition());
+          mapService.getMap().setCenter( marker.getPosition());
     };
     this.close = function() {
         if (infowindow) {

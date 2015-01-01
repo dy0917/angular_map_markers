@@ -73,8 +73,8 @@ mapApp
                             function markerClickCallback(scope, todoId) {
                                 return function() {
                                     scope.$apply(function() {
-                                        //           marker.
-                        
+         
+                      
                                         mapControlsService.openInfoWindowByTodoId(todoId);
                                     });
                                 };
@@ -84,8 +84,9 @@ mapApp
                             function markerDblClickCallback(scope, todoId) {
                                 return function() {
                                     scope.$apply(function() {
-                       
+                               if(mapControlsService.user){
                                         mapControlsService.editTodoById(todoId);
+                                    }
                                     });
                                 };
                             }

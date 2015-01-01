@@ -41,8 +41,10 @@ mapApp.controller('EditTodoCtrl', function($scope, mapService, todosService, inf
 
     function editMarkerDblClickCallback(scope) {
 
+console.log("dboucluicj");
         return function() {
             scope.$apply(function() {
+  
                 scope.submitTodo();
             });
         };
@@ -72,6 +74,7 @@ mapApp.controller('EditTodoCtrl', function($scope, mapService, todosService, inf
     $scope.$watch('controls.editTodo + controls.editTodoId', function() {
         var pos, todo = mapControlsService.editTodoId !== NEW_TODO_ID && todosService.getTodoById(mapControlsService.editTodoId);
         infoWindowService.close();
+   
         if (mapControlsService.editTodo) {
             if (todo) {
                 $scope.editTodo = {
