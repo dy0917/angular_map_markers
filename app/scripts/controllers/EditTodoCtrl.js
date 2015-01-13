@@ -41,7 +41,6 @@ mapApp.controller('EditTodoCtrl', function($scope, mapService, todosService, inf
 
     function editMarkerDblClickCallback(scope) {
 
-console.log("dboucluicj");
         return function() {
             scope.$apply(function() {
   
@@ -109,7 +108,7 @@ console.log("dboucluicj");
             else
                 editTodo();
         }
-    }
+    };
 
     $scope.resetCloseTodoForm = function() {
         editMarker.setMap(null);

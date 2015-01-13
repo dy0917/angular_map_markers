@@ -5,6 +5,7 @@
         <group>
             <file>file:/home/adminuser/NetBeansProject/angular_map_markers/app/index.html</file>
             <file>file:/home/adminuser/NetBeansProject/angular_map_markers/app/scripts/services/todosService.js</file>
+            <file>file:/home/adminuser/NetBeansProject/angular_map_markers/app/scripts/app.js</file>
             <file>file:/home/adminuser/NetBeansProject/angular_map_markers/app/scripts/services/mapService.js</file>
             <file>file:/home/adminuser/NetBeansProject/angular_map_markers/app/scripts/controllers/about.js</file>
             <file>file:/home/adminuser/NetBeansProject/angular_map_markers/app/scripts/controllers/loginCtrl.js</file>
@@ -12,6 +13,7 @@
             <file>file:/home/adminuser/NetBeansProject/angular_map_markers/app/scripts/directives/mainDrc.js</file>
             <file>file:/home/adminuser/NetBeansProject/angular_map_markers/app/views/main.html</file>
             <file>file:/home/adminuser/NetBeansProject/angular_map_markers/app/scripts/services/infoWindowService.js</file>
+            <file>file:/home/adminuser/NetBeansProject/angular_map_markers/app/views/about.html</file>
             <file>file:/home/adminuser/NetBeansProject/angular_map_markers/app/scripts/lib/markerwithlabel.js</file>
             <file>file:/home/adminuser/NetBeansProject/angular_map_markers/app/scripts/controllers/main.js</file>
         </group>

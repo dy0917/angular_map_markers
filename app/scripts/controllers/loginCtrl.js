@@ -17,7 +17,7 @@ mapApp.controller('loginCtrl', function($scope, mapControlsService) {
         var user = $scope.user;
         if (user.username == "admin" && user.password == "Pa55word")
         {
-       
+
             mapControlsService.setUser($scope.user);
         }
         else
@@ -26,11 +26,22 @@ mapApp.controller('loginCtrl', function($scope, mapControlsService) {
         }
         $scope.user = {};
     };
-    
-   $scope.reset = function() {
-     $scope.user = {};
-     mapControlsService.isLogin=false;
-   };
+
+    $scope.onkeypress = function(keyEvent) {
+        if (keyEvent.which === 13) {
+        $scope.login();
+        }
+    };
+        $scope.onkeyup = function(keyEvent) {
+        if (keyEvent.which === 27) {
+           $scope.reset();
+        }
+    };
+
+    $scope.reset = function() {
+        $scope.user = {};
+        mapControlsService.isLogin = false;
+    };
 
 
 

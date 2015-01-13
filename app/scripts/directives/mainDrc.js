@@ -42,7 +42,6 @@ mapApp
                                 markerId,
                                 uniqueTodos = {};
 
-
                         function addMarkerByTodoIndex(todoIndex) {
                             var marker,
                                     markerOptions,
@@ -52,7 +51,6 @@ mapApp
                                 map: map,
                                 title: todo.title,
                                 position: new google.maps.LatLng(todo.lat, todo.lng),
-//                                labelContent: todo.title,
                        
                                 phone: todo.phone,
                                 addr: todo.addr,
@@ -182,7 +180,7 @@ mapApp
                     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(testWindowElem[0]);
                     
                     loginFormTemplate = document.getElementById('loginFormTemplate').innerHTML.trim();
-                    console.log(loginFormTemplate);
+             
                     loginFormElem = $compile(loginFormTemplate)(scope);
                     map.controls[google.maps.ControlPosition.TOP_CENTER].push(loginFormElem[0]);
                     

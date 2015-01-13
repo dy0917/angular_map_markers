@@ -4,7 +4,7 @@
 <script type="text/html" id="todosControlTemplate">
     <section class="pure-u-1-6 map-control">
         <header>
-            <h3>Todo Maps</h3>
+            <h3>Grab Location</h3>
         </header>
         <!--  <section ng-show="todos.filtered().length">
               <ul>
@@ -75,10 +75,12 @@
 <script type="text/html" id="loginFormTemplate">
    <div class="pure-u-1-6 map-control" ng-show="controls.isLogin" ng-controller="loginCtrl">
     <label for="user">User name:</label>
-                <input id="username" class="pure-input-1" type="text" ng-model="user.username">
+                <input id="username" class="pure-input-1" type="text" ng-model="user.username" ng-keypress="onkeypress($event)" 
+             ng-keyup="onkeyup($event)"
+             ng-keypress="onKeyPress($event)" />
                 <label for="user">Password:</label>
-                <input id="password" class="pure-input-1" type="password" ng-model="user.password">
-                    <button class="pure-button pure-button-primary pure-input-1" ng-click="login()" >Login</button>
+                <input id="password" class="pure-input-1" type="password" ng-model="user.password" ng-enter="doSomething()" >
+                    <button class="pure-button pure-button-primary pure-input-1" ng-click="login()">Login</button>
                     <button class="pure-button pure-button-primary pure-input-1" ng-click="reset()" >Cancel</button>
                 </div>
 </script>

@@ -13,7 +13,6 @@ mapApp.service('todosService', function($filter, $location) {
     this.items = [
         {
             id: 0,
-            completed: false,
             title: '梧桐树花园私房菜',
             addr: '354 Remuera Road, Remuera, Auckland City',
             phone: '09-5201099',
@@ -22,7 +21,6 @@ mapApp.service('todosService', function($filter, $location) {
             lng: 174.7972431
         }, {
             id: 1,
-            completed: true,
             title: '鼎鼎香火锅',
             addr: 'Unit 14, 16 Gooch Pl, MeadowLand, Auckland',
             phone: '09-5335008',
@@ -31,7 +29,6 @@ mapApp.service('todosService', function($filter, $location) {
             lng: 174.927837
         }, {
             id: 2,
-            completed: false,
             title: '小肥羊Newmarket总店',
             addr: '27 Davis Crescent, New Market, Auckland',
             phone: '09-5206866',
@@ -40,7 +37,6 @@ mapApp.service('todosService', function($filter, $location) {
             lng: 174.7778149
         },
         {id: 3,
-            completed: true,
             title: 'Genuine Chinese Massage 正规按摩',
             addr: '10 Cashmore Place, Flat Bush, Auckland',
             phone: '09-9488639',
@@ -54,7 +50,7 @@ mapApp.service('todosService', function($filter, $location) {
         return $filter('filter')(this.items, this.filter);
     };
     this.remainingCount = function() {
-        return $filter('filter')(this.items, {completed: false}).length;
+        return $filter('filter')(this.items).length;
     };
     this.getTodoById = function(todoId) {
         var todo, i;

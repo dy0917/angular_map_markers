@@ -8,6 +8,7 @@
  *
  * Main module of the application.
  */
+var apiPath="http://api.map.webfocusstudio.com";
 var mapApp = angular
         .module('angularMapMarkersApp', [
             'ngAnimate',
@@ -23,6 +24,11 @@ var mapApp = angular
                         templateUrl: 'views/main.html',
                         controller: 'MainCtrl'
                     })
+                    .when('/shop/:shopid', {
+                        templateUrl: 'views/main.html',
+                        controller: 'MainCtrl'
+                    })
+                    
                     .when('/about', {
                         templateUrl: 'views/about.html',
                         controller: 'AboutCtrl'
