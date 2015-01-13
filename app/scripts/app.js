@@ -37,4 +37,4 @@ var mapApp = angular
                         redirectTo: '/'
                     });
         });
-mapApp.value('NEW_TODO_ID', -1);
+mapApp.value('NEW_location_ID', -1);

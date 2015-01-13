@@ -9,7 +9,7 @@
 mapApp
         .directive('helloMaps', function($compile) {
             return {
-                controller: function($scope, $location, mapService, mapControlsService, infoWindowService, todosService, markersService) {
+                controller: function($scope, $location, mapService, mapControlsService, infoWindowService, locationsService, markersService) {
                     if ($location.path() === '') {
                         $location.path('/');
                     }
@@ -23,37 +23,37 @@ mapApp
 
                     this.registerMap = function(myMap) {
                         mapService.setMap(myMap);
-                        $scope.todos = todosService;
+                        $scope.locations = locationsService;
                     };
 
                     $scope.$watch('location.path()', function(path) {
-                        todosService.filter = (path === '/active') ?
+                        locationsService.filter = (path === '/active') ?
                                 {completed: false} : (path === '/completed') ?
                                 {completed: true} : null;
                     });
 
-                    $scope.$watch('todos.filter', function() {
+                    $scope.$watch('locations.filter', function() {
                         var i,
-                                todos = todosService.filtered(),
+                                locations = locationsService.filtered(),
                                 map = mapService.getMap(),
-                                todoId,
+                                locationId,
                                 marker,
                                 markers = markersService.markers,
                                 markerId,
-                                uniqueTodos = {};
+                                uniquelocations = {};
 
-                        function addMarkerByTodoIndex(todoIndex) {
+                        function addMarkerBylocationIndex(locationIndex) {
                             var marker,
                                     markerOptions,
-                                    todo = todos[todoIndex];
+                                    location = locations[locationIndex];
 
                             markerOptions = {
                                 map: map,
-                                title: todo.title,
-                                position: new google.maps.LatLng(todo.lat, todo.lng),
+                                title: location.title,
+                                position: new google.maps.LatLng(location.lat, location.lng),
                        
-                                phone: todo.phone,
-                                addr: todo.addr,
+                                phone: location.phone,
+                                addr: location.addr,
                                   icon: {
                     url: "images/small_marker.png",
     
@@ -63,56 +63,56 @@ mapApp
                             marker = new MarkerWithLabel(markerOptions);
 
                             marker.setValues({
-                                id: todo.id,
-                                desc: todo.desc
+                                id: location.id,
+                                desc: location.desc
                             });
                             markersService.markers.push(marker);
 
-                            function markerClickCallback(scope, todoId) {
+                            function markerClickCallback(scope, locationId) {
                                 return function() {
                                     scope.$apply(function() {
          
                       
-                                        mapControlsService.openInfoWindowByTodoId(todoId);
+                                        mapControlsService.openInfoWindowBylocationId(locationId);
                                     });
                                 };
                             }
-                            google.maps.event.addListener(marker, 'click', markerClickCallback($scope, todo.id));
+                            google.maps.event.addListener(marker, 'click', markerClickCallback($scope, location.id));
 
-                            function markerDblClickCallback(scope, todoId) {
+                            function markerDblClickCallback(scope, locationId) {
                                 return function() {
                                     scope.$apply(function() {
                                if(mapControlsService.user){
-                                        mapControlsService.editTodoById(todoId);
+                                        mapControlsService.editlocationById(locationId);
                                     }
                                     });
                                 };
                             }
-                            google.maps.event.addListener(marker, 'dblclick', markerDblClickCallback($scope, todo.id));
+                            google.maps.event.addListener(marker, 'dblclick', markerDblClickCallback($scope, location.id));
                         }
 
-                        for (i = todos.length - 1; i >= 0; i--) {
+                        for (i = locations.length - 1; i >= 0; i--) {
 
-                            uniqueTodos[todos[i].id] = i;
+                            uniquelocations[locations[i].id] = i;
                         }
 
 
                         for (i = markers.length - 1; i >= 0; i--) {
                             marker = markers[i];
                             markerId = marker.get("id");
-                            if (uniqueTodos[markerId] !== undefined) {
-                                //   delete uniqueTodos[markerId];
+                            if (uniquelocations[markerId] !== undefined) {
+                                //   delete uniquelocations[markerId];
                             } else {
                                 marker.setMap(null);
                                 markers.splice(i, 1);
                             }
                         }
 
-                        for (todoId in uniqueTodos) {
+                        for (locationId in uniquelocations) {
 
-                            if (uniqueTodos.hasOwnProperty(todoId)) {
+                            if (uniquelocations.hasOwnProperty(locationId)) {
 
-                                addMarkerByTodoIndex(uniqueTodos[todoId]);
+                                addMarkerBylocationIndex(uniquelocations[locationId]);
                             }
                         }
                     });
@@ -129,10 +129,10 @@ mapApp
                             infoWindowTemplate,
                             infoWindowElem,
                             infowindow,
-                            todosControlTemplate,
-                            todosControlElem,
-                            editTodoControlTemplate,
-                            editTodoControlElem,
+                            locationsControlTemplate,
+                            locationsControlElem,
+                            editlocationControlTemplate,
+                            editlocationControlElem,
                             mapStyles,
                             map;
 
@@ -171,9 +171,9 @@ mapApp
 
                     ctrl.registerMap(map);
 
-                    todosControlTemplate = document.getElementById('todosControlTemplate').innerHTML.trim();
-                    todosControlElem = $compile(todosControlTemplate)(scope);
-                    map.controls[google.maps.ControlPosition.TOP_LEFT].push(todosControlElem[0]);
+                    locationsControlTemplate = document.getElementById('locationsControlTemplate').innerHTML.trim();
+                    locationsControlElem = $compile(locationsControlTemplate)(scope);
+                    map.controls[google.maps.ControlPosition.TOP_LEFT].push(locationsControlElem[0]);
 
                     testWindowTemplate = document.getElementById('testWindowTemplate').innerHTML.trim();
                     testWindowElem = $compile(testWindowTemplate)(scope);
@@ -185,9 +185,9 @@ mapApp
                     map.controls[google.maps.ControlPosition.TOP_CENTER].push(loginFormElem[0]);
                     
 
-                    editTodoControlTemplate = document.getElementById('editTodoControlTemplate').innerHTML.trim();
-                    editTodoControlElem = $compile(editTodoControlTemplate)(scope);
-                    map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(editTodoControlElem[0]);
+                    editlocationControlTemplate = document.getElementById('editlocationControlTemplate').innerHTML.trim();
+                    editlocationControlElem = $compile(editlocationControlTemplate)(scope);
+                    map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(editlocationControlElem[0]);
                 }
             };
 

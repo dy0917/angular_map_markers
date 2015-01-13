@@ -12,11 +12,11 @@ mapApp.service('infoWindowService', function(mapService) {
     this.registerInfoWindow = function(myInfoWindow) {
         infowindow = myInfoWindow;
     };
-    this.setData = function(todoId, todoTitle, todoDesc, phone, addr) {
+    this.setData = function(locationId, locationTitle, locationDesc, phone, addr) {
 
-        this.data.id = todoId;
-        this.data.title = todoTitle;
-        this.data.desc = todoDesc;
+        this.data.id = locationId;
+        this.data.title = locationTitle;
+        this.data.desc = locationDesc;
         this.data.phone = phone;
         this.data.addr = addr;
 

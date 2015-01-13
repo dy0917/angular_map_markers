@@ -6,7 +6,7 @@
  * # AboutCtrl
  * Controller of the angularMapApp
  */
-mapApp.service('todosService', function($filter, $location) {
+mapApp.service('locationsService', function($filter, $location) {
     // nextId and list both have mock starting data
     this.searchString = "";
     this.nextId = 4;
@@ -52,18 +52,18 @@ mapApp.service('todosService', function($filter, $location) {
     this.remainingCount = function() {
         return $filter('filter')(this.items).length;
     };
-    this.getTodoById = function(todoId) {
-        var todo, i;
+    this.getlocationById = function(locationId) {
+        var location, i;
         for (i = this.items.length - 1; i >= 0; i--) {
-            todo = this.items[i];
-            if (todo.id === todoId) {
-                return todo;
+            location = this.items[i];
+            if (location.id === locationId) {
+                return location;
             }
         }
         return false;
     };
-    this.addTodo = function(title, desc, lat, lng) {
-        var newTodo = {
+    this.addlocation = function(title, desc, lat, lng) {
+        var newlocation = {
             id: this.nextId++,
             completed: false,
             title: title,
@@ -71,17 +71,17 @@ mapApp.service('todosService', function($filter, $location) {
             lat: lat,
             lng: lng
         };
-        this.items.push(newTodo);
+        this.items.push(newlocation);
     };
-    this.updateTodo = function(todoId, title, desc, lat, lng, comp) {
-        var todo = this.getTodoById(todoId);
-        if (todo) {
-            todo.title = title;
-            todo.desc = desc;
-            todo.lat = lat;
-            todo.lng = lng;
-            todo.completed = comp;
-            todo.id = this.nextId++;
+    this.updatelocation = function(locationId, title, desc, lat, lng, comp) {
+        var location = this.getlocationById(locationId);
+        if (location) {
+            location.title = title;
+            location.desc = desc;
+            location.lat = lat;
+            location.lng = lng;
+            location.completed = comp;
+            location.id = this.nextId++;
         }
     };
     this.prune = function() {

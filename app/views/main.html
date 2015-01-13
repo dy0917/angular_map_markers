@@ -1,48 +1,48 @@
 
 <div class="google-map" hello-maps="" ></div>
 
-<script type="text/html" id="todosControlTemplate">
+<script type="text/html" id="locationsControlTemplate">
     <section class="pure-u-1-6 map-control">
         <header>
             <h3>Grab Location</h3>
         </header>
-        <!--  <section ng-show="todos.filtered().length">
+        <!--  <section ng-show="locations.filtered().length">
               <ul>
-                  <li ng-repeat="todo in todos.filtered()" ng-class="{completed: todo.completed}">
+                  <li ng-repeat="location in locations.filtered()" ng-class="{completed: location.completed}">
                       <div>
-                          <input type="checkbox" ng-model="todo.completed">
+                          <input type="checkbox" ng-model="location.completed">
                           <label 
-                              ng-click="controls.openInfoWindowByTodoId(todo.id)"
-                              ng-dblclick="controls.editTodoById(todo.id)">{{todo.title}}</label>
+                              ng-click="controls.openInfoWindowBylocationId(location.id)"
+                              ng-dblclick="controls.editlocationById(location.id)">{{location.title}}</label>
                       </div>
                   </li>
               </ul>
           </section>
         -->
         <footer>
-            <!--       <span ng-show="todos.remainingCount()">
-                       <strong>{{todos.remainingCount()}}</strong>
-                       <span ng-pluralize count="todos.remainingCount()" when="{ one: 'item left', other: 'items left' }"></span>
+            <!--       <span ng-show="locations.remainingCount()">
+                       <strong>{{locations.remainingCount()}}</strong>
+                       <span ng-pluralize count="locations.remainingCount()" when="{ one: 'item left', other: 'items left' }"></span>
                    </span>-->
             <hr />
-            <input type="text" ng-model="todos.searchString">
-            <button ng-click="todos.filterBuy()" >filter</button>
+            <input type="text" ng-model="locations.searchString">
+            <button ng-click="locations.filterBuy()" >filter</button>
             <hr />
-            <!--     <button class="pure-button" ng-click="todos.prune()" ng-show="todos.remainingCount() < todos.items.length">
-                     Clear completed ({{todos.items.length - todos.remainingCount()}})
+            <!--     <button class="pure-button" ng-click="locations.prune()" ng-show="locations.remainingCount() < locations.items.length">
+                     Clear completed ({{locations.items.length - locations.remainingCount()}})
                  </button>-->
             <div ng-show="controls.user">
-            <button class="pure-button pure-button-success"  ng-click="controls.newTodo()" ng-hide="controls.editTodo">New Store</button>
+            <button class="pure-button pure-button-success"  ng-click="controls.newlocation()" ng-hide="controls.editlocation">New Store</button>
             </div>
         </footer>
-        <section ng-show="todos.filtered().length">
+        <section ng-show="locations.filtered().length">
             <ul>
-                <li ng-repeat="todo in todos.filtered()" ng-class="{completed: todo.completed}">
+                <li ng-repeat="location in locations.filtered()" ng-class="{completed: location.completed}">
                     <div>
-                        <!--<input type="checkbox" ng-model="todo.completed">-->
+                        <!--<input type="checkbox" ng-model="location.completed">-->
                         <label 
-                            ng-click="controls.openInfoWindowByTodoId(todo.id)"
-                            ng-dblclick="controls.editTodoById(todo.id)">{{todo.title}}</label>
+                            ng-click="controls.openInfoWindowBylocationId(location.id)"
+                            ng-dblclick="controls.editlocationById(location.id)">{{location.title}}</label>
                     </div>
                 </li>
             </ul>
@@ -85,24 +85,24 @@
                 </div>
 </script>
 
-<script type="text/html" id="editTodoControlTemplate">
-    <div class="pure-u-1-6 map-control" ng-show="controls.editTodo" ng-controller="EditTodoCtrl">
-        <form name="editTodoForm" class="pure-form" ng-submit="submitTodo()">
+<script type="text/html" id="editlocationControlTemplate">
+    <div class="pure-u-1-6 map-control" ng-show="controls.editlocation" ng-controller="EditlocationCtrl">
+        <form name="editlocationForm" class="pure-form" ng-submit="submitlocation()">
             <fieldset>
                 <label for="title">Title:</label>
-                <input id="title" class="pure-input-1" type="text" ng-model="editTodo.title" ng-maxlength="30" required>
+                <input id="title" class="pure-input-1" type="text" ng-model="editlocation.title" ng-maxlength="30" required>
                 <label for="description">Description:</label>
-                <input id="description" class="pure-input-1" type="text" ng-model="editTodo.desc">
+                <input id="description" class="pure-input-1" type="text" ng-model="editlocation.desc">
                 <label for="latitude">Latitude:</label>
-                <input id="latitude" class="pure-input-1" type="text" ng-model="editTodo.lat">
+                <input id="latitude" class="pure-input-1" type="text" ng-model="editlocation.lat">
                 <label for="longitude">Longitude:</label>
-                <input id="longitude" class="pure-input-1" type="text" ng-model="editTodo.lng">
-                <!--            <div ng-show="editTodo.id !== -1">
+                <input id="longitude" class="pure-input-1" type="text" ng-model="editlocation.lng">
+                <!--            <div ng-show="editlocation.id !== -1">
                                 <label for="completed">Completed:</label>
-                                <input id="completed" type="checkbox" ng-model="editTodo.comp">
+                                <input id="completed" type="checkbox" ng-model="editlocation.comp">
                             </div>-->
-                <button class="pure-button pure-button-primary pure-input-1" type="submit">{{editTodo.saveMsg}}</button>
-                <button class="pure-button pure-input-1" ng-click="resetCloseTodoForm()">{{editTodo.cancelMsg}}</button>
+                <button class="pure-button pure-button-primary pure-input-1" type="submit">{{editlocation.saveMsg}}</button>
+                <button class="pure-button pure-input-1" ng-click="resetCloselocationForm()">{{editlocation.cancelMsg}}</button>
             </fieldset>
         </form>
     </div>

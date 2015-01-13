@@ -8,11 +8,11 @@
  */
 mapApp.service('markersService', function() {
     this.markers = [];
-    this.getMarkerByTodoId = function(todoId) {
+    this.getMarkerBylocationId = function(locationId) {
         var marker, i;
         for (i = this.markers.length - 1; i >= 0; i--) {
             marker = this.markers[i];
-            if (marker.get("id") === todoId) {
+            if (marker.get("id") === locationId) {
                 return marker;
             }
         }

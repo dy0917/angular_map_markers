@@ -6,28 +6,28 @@
  * # AboutCtrl
  * Controller of the angularMapApp
  */
-mapApp.service('mapControlsService', function(infoWindowService, markersService, mapService,todosService, NEW_TODO_ID) {
-    this.editTodo = false;
+mapApp.service('mapControlsService', function(infoWindowService, markersService, mapService,locationsService, NEW_location_ID) {
+    this.editlocation = false;
     this.isLogin = false;
     this.user = null;
-    this.editTodoId = NEW_TODO_ID;
+    this.editlocationId = NEW_location_ID;
 
-    this.newTodo = function() {
-        this.editTodoById();
+    this.newlocation = function() {
+        this.editlocationById();
     };
-    this.editTodoById = function(todoId) {
+    this.editlocationById = function(locationId) {
  
-//        this.editTodoId = todoId || NEW_TODO_ID;
- this.editTodoId = todoId;
-        this.editTodo = true;
+//        this.editlocationId = locationId || NEW_location_ID;
+ this.editlocationId = locationId;
+        this.editlocation = true;
     };
-    this.openInfoWindowByTodoId = function(todoId) { 
-        var marker = markersService.getMarkerByTodoId(todoId);
-        var todo= todosService.getTodoById(todoId);
+    this.openInfoWindowBylocationId = function(locationId) { 
+        var marker = markersService.getMarkerBylocationId(locationId);
+        var location= locationsService.getlocationById(locationId);
         
-     console.log(todo.lat, todo.lng);
+     console.log(location.lat, location.lng);
         if (marker) {
-            infoWindowService.setData(todoId, marker.getTitle(), marker.get("desc"), marker.get("phone"), marker.get("addr"));
+            infoWindowService.setData(locationId, marker.getTitle(), marker.get("desc"), marker.get("phone"), marker.get("addr"));
             infoWindowService.open(marker);
             return;
         }
