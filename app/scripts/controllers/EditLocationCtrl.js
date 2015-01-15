@@ -71,14 +71,13 @@ mapApp.controller('EditlocationCtrl', function($scope, mapService, locationsServ
     // editMarker Setup End
 
     $scope.$watch('controls.editlocation + controls.editlocationId', function() {
-        console.log("NEW_location_ID" +NEW_location_ID);
-        console.log("mapControlsService.editlocationId " +mapControlsService.editlocationId);
+  
         var pos, location = mapControlsService.editlocationId !== NEW_location_ID && locationsService.getlocationById(mapControlsService.editlocationId);
         infoWindowService.close();
-   
+
         if (mapControlsService.editlocation) {
             if (location) {
-                console.log(location);
+               
                 $scope.editlocation = {
                     id: location.id,
                     title: location.title,

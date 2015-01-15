@@ -35,9 +35,10 @@
             <button class="pure-button pure-button-success"  ng-click="controls.newlocation()" ng-hide="controls.editlocation">New Store</button>
             </div>
         </footer>
+        {{locations.filtered().length}}
         <section ng-show="locations.filtered().length">
             <ul>
-                <li ng-repeat="location in locations.filtered()" ng-class="{completed: location.completed}">
+                <li ng-repeat="location in locations.filtered()" >
                     <div>
                         <!--<input type="checkbox" ng-model="location.completed">-->
                         <label 
