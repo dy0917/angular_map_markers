@@ -13,10 +13,18 @@ mapApp.service('mapControlsService', function(infoWindowService, markersService,
     this.editlocationId = NEW_location_ID;
 
     this.newlocation = function() {
+     
+     //                $scope.editlocation = {
+//                    id: NEW_location_ID,
+//                    lat: pos.lat,
+//                    lng: pos.lng,
+//                    saveMsg: "Save Location",
+//                    cancelMsg: "Discard Location"
+//                };
+     
         this.editlocationById();
     };
     this.editlocationById = function(locationId) {
- 
 //        this.editlocationId = locationId || NEW_location_ID;
  this.editlocationId = locationId;
         this.editlocation = true;
@@ -25,7 +33,6 @@ mapApp.service('mapControlsService', function(infoWindowService, markersService,
         var marker = markersService.getMarkerBylocationId(locationId);
         var location= locationsService.getlocationById(locationId);
         
-     console.log(location.lat, location.lng);
         if (marker) {
             infoWindowService.setData(locationId, marker.getTitle(), marker.get("desc"), marker.get("phone"), marker.get("addr"));
             infoWindowService.open(marker);

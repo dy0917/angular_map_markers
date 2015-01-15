@@ -9,7 +9,6 @@
  */
 angular.module('angularMapMarkersApp')
  .controller('AboutCtrl', function ($scope,$http) {
-       console.log("aaaaa");
       $scope.save=function(){
 var sHTML = $('#summernote').code();
 console.log(sHTML);

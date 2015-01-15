@@ -6,7 +6,7 @@
  * # AboutCtrl
  * Controller of the angularMapApp
  */
-mapApp.service('locationsService', function($filter, $location) {
+mapApp.service('locationsService', function($filter, $location,$http) {
     // nextId and list both have mock starting data
     this.searchString = "";
     this.nextId = 4;
@@ -64,14 +64,30 @@ mapApp.service('locationsService', function($filter, $location) {
     };
     this.addlocation = function(title, desc, lat, lng) {
         var newlocation = {
+            location: {
             id: this.nextId++,
-            completed: false,
             title: title,
             desc: desc,
             lat: lat,
             lng: lng
+        }
         };
-        this.items.push(newlocation);
+        console.log(newlocation);
+//        JSON.stringify(newlocation);
+       var that=this;
+                this.items.push(newlocation); 
+                
+//              $http.post(apiPath+'/location/create', newlocation).
+//  success(function(data, status, headers, config) {
+//          that.items.push(newlocation); 
+//      console.log(data);
+//  }).
+//  error(function(data, status, headers, config) {
+//      console.log(data);
+//    
+//  });
+        
+    
     };
     this.updatelocation = function(locationId, title, desc, lat, lng, comp) {
         var location = this.getlocationById(locationId);

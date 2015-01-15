@@ -24,7 +24,7 @@ mapApp.service('infoWindowService', function(mapService) {
     this.open = function(marker) {
  
         infowindow.open(mapService.getMap(), marker);
-        console.log(marker.getPosition());
+ 
           mapService.getMap().setCenter( marker.getPosition());
     };
     this.close = function() {
