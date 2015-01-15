@@ -25,6 +25,7 @@ mapApp.service('mapControlsService', function(infoWindowService, markersService,
         this.editlocationById();
     };
     this.editlocationById = function(locationId) {
+        console.log(locationId);
 //        this.editlocationId = locationId || NEW_location_ID;
  this.editlocationId = locationId;
         this.editlocation = true;
