@@ -18,8 +18,8 @@ mapApp.service('mapControlsService', function(infoWindowService, markersService,
 //                    id: NEW_location_ID,
 //                    lat: pos.lat,
 //                    lng: pos.lng,
-//                    saveMsg: "Save Location",
-//                    cancelMsg: "Discard Location"
+//                    saveMsg: "Save location",
+//                    cancelMsg: "Discard location"
 //                };
      
         this.editlocationById();

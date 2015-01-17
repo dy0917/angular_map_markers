@@ -1464,7 +1464,7 @@
         var includeAncestor = options && options.includeAncestor;
         var fullyContains = options && options.fullyContains;
 
-        // TODO compare points and sort
+        // location compare points and sort
         var startPoint = this.getStartPoint();
         var endPoint = this.getEndPoint();
 
